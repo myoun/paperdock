@@ -1,0 +1,12 @@
+services:
+  paperdock:
+    container_name: paperdock
+    environment:
+      MC_VERSION : 1.19.2
+    stdin_open: true
+    tty: true
+    build: "./"
+    ports:
+      - "25565:25565"
+    volumes:
+      - ./build/libs/:/root/server/plugins
