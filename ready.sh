@@ -10,8 +10,10 @@ else
     if [ ! -d "./server" ]; then
       mkdir ./server
     fi
-    DOWNLOAD_LINK=$(java -jar paper-api.jar -r download -v "$MC_VERSION" -b latest)
-    wget "$DOWNLOAD_LINK" -O ./server/paper.jar
+    if [ ! -f "./server/paper.jar" ]; then
+        DOWNLOAD_LINK=$(java -jar paper-api.jar -r download -v "$MC_VERSION" -b latest)
+        wget "$DOWNLOAD_LINK" -O ./server/paper.jar
+    fi
     echo eula=true > ./server/eula.txt
     cd ./server || exit
     java -jar paper.jar nogui
